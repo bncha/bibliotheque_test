@@ -75,9 +75,17 @@ L'API est alors accessible sur :
 
 ## 🧪 Tests et Qualité de code
 
+### Exécuter le scénario complet de démo (serveur lancé)
+```bash
+python scripts/demo_scenario.py
+# ou: make demo
+```
+
 ### Exécuter les tests unitaires et d'intégration
 ```bash
 pytest -v
+# Avec rapport de couverture :
+pytest --cov=src/library --cov-report=term-missing
 ```
 
 ### Vérifier le style et le formatage du code

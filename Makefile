@@ -1,4 +1,4 @@
-.PHONY: help install test lint format run clean
+.PHONY: help install test lint format run demo clean
 
 help:
 	@echo "Available commands:"
@@ -7,6 +7,7 @@ help:
 	@echo "  make lint     - Run code quality checks with ruff"
 	@echo "  make format   - Format code with ruff"
 	@echo "  make run      - Start FastAPI server with live reload"
+	@echo "  make demo     - Run interactive end-to-end scenario script"
 	@echo "  make clean    - Remove build artifacts and caches"
 
 install:
@@ -26,8 +27,12 @@ format:
 run:
 	uvicorn library.api.main:app --reload
 
+demo:
+	python scripts/demo_scenario.py
+
 clean:
 	find . -type d -name "__pycache__" -exec rm -rf {} +
 	find . -type d -name ".pytest_cache" -exec rm -rf {} +
 	find . -type d -name ".ruff_cache" -exec rm -rf {} +
 	rm -rf build dist src/*.egg-info
+
