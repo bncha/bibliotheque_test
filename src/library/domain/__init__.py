@@ -24,3 +24,4 @@ __all__ = [
     "LoanNotFoundError",
     "MaxLoansReachedError",
 ]
+

@@ -221,3 +221,4 @@ def get_client(
     """Retrieve a specific client by ID."""
     client = service.get_client(client_id=id)
     return ClientResponse.model_validate(client)
+

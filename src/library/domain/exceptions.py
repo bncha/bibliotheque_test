@@ -35,3 +35,4 @@ class BookNotFoundError(LibraryDomainError):
 
 class ClientNotFoundError(LibraryDomainError):
     """Raised when a requested client does not exist."""
+

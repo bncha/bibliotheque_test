@@ -73,3 +73,4 @@ def test_loan_lifecycle() -> None:
 
     with pytest.raises(BookAlreadyReturnedError):
         loan.return_book()
+

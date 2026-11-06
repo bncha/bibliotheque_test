@@ -119,3 +119,4 @@ def test_get_client_loans(service: LibraryService) -> None:
 
     assert len(all_loans) == 2
     assert len(active_loans) == 1
+

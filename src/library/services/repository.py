@@ -102,3 +102,4 @@ class InMemoryLoanRepository:
 
     def list_all(self) -> list[Loan]:
         return list(self._loans.values())
+

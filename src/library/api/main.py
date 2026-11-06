@@ -120,3 +120,4 @@ async def root() -> dict[str, str]:
         "service": "Library Management API",
         "docs": "/docs",
     }
+

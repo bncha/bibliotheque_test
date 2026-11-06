@@ -141,3 +141,40 @@ def test_return_already_returned_loan(client: TestClient) -> None:
 def test_loan_not_found(client: TestClient) -> None:
     res = client.post("/loans/unknown-loan-id/return")
     assert res.status_code == 404
+
+
+def test_root_endpoint(client: TestClient) -> None:
+    res = client.get("/")
+    assert res.status_code == 200
+    assert res.json()["status"] == "ok"
+
+
+def test_list_books(client: TestClient) -> None:
+    client.post("/books", json={"title": "Book 1", "author": "Auth 1", "isbn": "ISBN1"})
+    client.post("/books", json={"title": "Book 2", "author": "Auth 2", "isbn": "ISBN2"})
+    res = client.get("/books")
+    assert res.status_code == 200
+    assert len(res.json()) >= 2
+
+
+def test_list_clients(client: TestClient) -> None:
+    client.post("/clients", json={"name": "Alice", "email": "alice@test.com"})
+    res = client.get("/clients")
+    assert res.status_code == 200
+    assert len(res.json()) >= 1
+
+
+def test_list_loans_and_get_loan(client: TestClient) -> None:
+    c = client.post("/clients", json={"name": "User", "email": "user@test.com"}).json()
+    b = client.post(
+        "/books", json={"title": "Book", "author": "Auth", "isbn": "123"}
+    ).json()
+    loan = client.post("/loans", json={"client_id": c["id"], "book_id": b["id"]}).json()
+
+    list_res = client.get("/loans")
+    assert list_res.status_code == 200
+    assert len(list_res.json()) >= 1
+
+    get_res = client.get(f"/loans/{loan['id']}")
+    assert get_res.status_code == 200
+    assert get_res.json()["id"] == loan["id"]

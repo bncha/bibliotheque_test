@@ -66,3 +66,4 @@ class ErrorResponse(BaseModel):
     """Standardized error response body."""
 
     detail: str
+
